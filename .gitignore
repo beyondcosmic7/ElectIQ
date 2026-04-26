@@ -1,0 +1,38 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Build output — not needed in repo (keeps size < 1MB)
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Editor
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+
+# Misc
+.eslintcache
