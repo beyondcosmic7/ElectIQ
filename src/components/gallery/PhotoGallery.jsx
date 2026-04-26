@@ -1,17 +1,6 @@
 import Masonry from '../effects/Masonry'
 
 const GALLERY_ITEMS = [
-  // Real photographs from Unsplash (free license)
-  { id: 1, img: '/images/parliament.jpg', height: 400, label: 'Indian Parliament — New Delhi' },
-  { id: 2, img: '/images/india-gate.jpg', height: 380, label: 'India Gate — War Memorial, New Delhi' },
-  { id: 3, img: '/images/india-flag.jpg', height: 350, label: 'Flag of India — The Tiranga' },
-  { id: 4, img: '/images/crowd-democracy.jpg', height: 400, label: 'The People — Heart of Indian Democracy' },
-  { id: 5, img: '/images/voter-hands.jpg', height: 320, label: 'Hands of Democracy — People United' },
-  // AI-generated election scene images
-  { id: 6, img: '/images/evm.png', height: 360, label: 'Electronic Voting Machine (EVM)' },
-  { id: 7, img: '/images/ink-finger.png', height: 320, label: 'Indelible Ink — Symbol of Voting' },
-  { id: 8, img: '/images/counting.png', height: 380, label: 'Vote Counting Center' },
-  { id: 9, img: '/images/voters.png', height: 360, label: 'Voters Queuing at a Polling Booth' },
   // New hyper-realistic AI generated election scenes
   { id: 11, img: '/images/ai_polling_officials.png', height: 380, label: 'Election Officials at a Polling Booth' },
   { id: 12, img: '/images/ai_voters_line.png', height: 420, label: 'Indian Citizens in a Voting Queue' },

@@ -29,9 +29,9 @@ If you are 18 or older, you can apply right now. Once your application is checke
       'Download your digital Voter ID once approved'
     ],
     image: {
-      url: '/images/unnamed (2).png',
-      alt: 'Voter Helpline App',
-      caption: 'The Voter Helpline app makes it super easy to register from your phone.'
+      url: '/images/ai_voters_line.png',
+      alt: 'Voter Queue',
+      caption: 'The voter registration process is your first step to the queue.'
     },
     documents: [
       'Age proof: Aadhaar card, Birth certificate, or 10th marksheet',
@@ -81,8 +81,8 @@ As soon as the dates are announced, strict new rules called the "Model Code of C
       'The police and voting officers start getting ready in your city'
     ],
     image: {
-      url: '/images/india-flag.jpg',
-      alt: 'Indian Flag',
+      url: '/images/ai_polling_officials.png',
+      alt: 'Election Officials',
       caption: 'Strict rules begin to make sure the election is fair for everyone.'
     },
     documents: [],
@@ -131,9 +131,9 @@ They have to officially declare their wealth, education, and if they have any cr
     ],
     documents: [],
     image: {
-      url: '/images/unnamed.png',
-      alt: 'Know Your Candidate App',
-      caption: 'You can use this app to see the criminal records and wealth of your local leaders.'
+      url: '/images/ai_polling_officials.png',
+      alt: 'Officials preparing records',
+      caption: 'You can use the KYC app to see the records of your local leaders.'
     },
     faqs: [
       {
@@ -176,7 +176,7 @@ Suddenly... exactly 48 hours before voting day, everything goes completely silen
       'All loud campaigning STOPS two days before voting'
     ],
     image: {
-      url: '/images/voters.png',
+      url: '/images/ai_voters_line.png',
       alt: 'Crowd at a rally',
       caption: 'This is a great time to listen to promises, ask hard questions, and decide your vote!'
     },
@@ -227,8 +227,8 @@ Finally, you go behind a cardboard screen to the voting machine (EVM). Press the
       'If not! Carry your Aadhaar, PAN Card, Driving License, or Passport.',
     ],
     image: {
-      url: '/images/vvpat-1704351286.png',
-      alt: 'Paper slip box',
+      url: '/images/ai_inked_finger.png',
+      alt: 'Inked Finger',
       caption: 'Look inside the window! A paper slip prints to show you exactly who you voted for.'
     },
     faqs: [
@@ -273,7 +273,7 @@ The numbers are counted round by round. By the afternoon, the numbers are clear,
       'The person with the most votes is announced the winner on TV!'
     ],
     image: {
-      url: '/images/counting.png',
+      url: '/images/ai_election_celebration.png',
       alt: 'Counting day',
       caption: 'Party members watch very closely to make sure the counting is fair.'
     },
@@ -320,7 +320,7 @@ The winning party gets together in Delhi, and they choose their leader. That lea
       'The new Government starts their work the very next day!'
     ],
     image: {
-      url: '/images/parliament.png',
+      url: '/images/ai_election_celebration.png',
       alt: 'Parliament building',
       caption: 'The winning leaders travel to the Parliament in Delhi to run the country.'
     },
