@@ -1,7 +1,7 @@
 # ElectIQ
 **Empowering Indian Citizens with Intelligent Election Guidance**
 
-![ElectIQ Showcase](/images/showcase.png)
+![ElectIQ Showcase](/public/images/showcase.png)
 
 ## 📌 Vertical & Problem Statement
 **Chosen Vertical:** Civic Tech / Social Good
