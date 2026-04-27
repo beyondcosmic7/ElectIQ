@@ -19,7 +19,7 @@ function getModel() {
   }
   if (!model) {
     model = genAI.getGenerativeModel({
-      model: 'gemini-3.1-flash-lite-preview',
+      model: 'gemini-1.5-flash',
       generationConfig: {
         temperature: 0.3,
         topP: 0.8,
@@ -137,6 +137,7 @@ export function useGemini() {
         return
 
       } catch (error) {
+        console.error('Gemini API Error:', error)
         attempts++
         const errorMsg = error.message?.toLowerCase() || ''
         const isRateLimit = errorMsg.includes('quota') ||
