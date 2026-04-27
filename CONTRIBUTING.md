@@ -30,7 +30,7 @@ npm install
 # Environment setup
 cp .env.example .env.local
 # Open .env.local and add your key:
-# VITE_GEMINI_API_KEY=AIzaSy...
+# VITE_GEMINI_API_KEY=
 
 # Start dev server
 npm run dev

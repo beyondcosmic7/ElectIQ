@@ -4,6 +4,25 @@ import { useAppContext } from '../context/AppContext'
 import { buildSystemPrompt, sanitizeInput, parseGeminiResponse, extractAnswerFromStream } from '../utils/geminiPrompt'
 import { trackQuestionAsked } from '../services/firebase'
 
+// Simple rate limiter — prevents API abuse
+const rateLimiter = {
+  calls: [],
+  maxCalls: 10,
+  windowMs: 60000, // 1 minute
+  isAllowed() {
+    const now = Date.now()
+    this.calls = this.calls.filter(t => now - t < this.windowMs)
+    if (this.calls.length >= this.maxCalls) return false
+    this.calls.push(now)
+    return true
+  },
+  remainingCalls() {
+    const now = Date.now()
+    this.calls = this.calls.filter(t => now - t < this.windowMs)
+    return this.maxCalls - this.calls.length
+  }
+}
+
 // Initialize the client once (not on every call)
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
@@ -40,6 +59,14 @@ export function useGemini() {
   const { state, dispatch } = useAppContext()
 
   const sendMessage = useCallback(async (userInput) => {
+    if (!rateLimiter.isAllowed()) {
+      dispatch({ 
+        type: 'SET_ERROR', 
+        payload: `Rate limit reached. You can ask ${rateLimiter.maxCalls} questions per minute. Please wait a moment.` 
+      })
+      return
+    }
+
     const sanitized = sanitizeInput(userInput)
     if (!sanitized) return
 

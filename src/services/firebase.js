@@ -18,7 +18,7 @@ export function initFirebase() {
     const app = initializeApp(firebaseConfig)
     analytics = getAnalytics(app)
     console.log('[ElectIQ] Firebase Analytics initialized')
-  } catch (e) {
+  } catch {
     console.warn('[ElectIQ] Firebase not configured — analytics disabled')
   }
 }
@@ -28,7 +28,7 @@ export function trackEvent(eventName, params = {}) {
     if (analytics) {
       logEvent(analytics, eventName, params)
     }
-  } catch (e) {
+  } catch {
     // Silently fail if analytics unavailable
   }
 }

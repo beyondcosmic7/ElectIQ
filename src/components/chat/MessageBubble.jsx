@@ -107,3 +107,8 @@ MessageBubble.propTypes = {
   isStreaming: PropTypes.bool,
   streamingContent: PropTypes.string,
 }
+
+MessageBubble.defaultProps = {
+  isStreaming: false,
+  streamingContent: '',
+}

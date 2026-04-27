@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import { useAppContext } from '../../context/AppContext'
 
 const MAX_LENGTH = 500
@@ -106,4 +107,8 @@ export default function ChatInputBar({ onSend }) {
       </div>
     </div>
   )
+}
+
+ChatInputBar.propTypes = {
+  onSend: PropTypes.func.isRequired,
 }

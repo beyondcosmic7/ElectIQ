@@ -1,4 +1,5 @@
 import { useAppContext } from '../../context/AppContext'
+import PropTypes from 'prop-types'
 import EciLogo from './EciLogo'
 
 export default function Header() {
@@ -90,4 +91,9 @@ export default function Header() {
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  isDark: PropTypes.bool,
+  onToggleTheme: PropTypes.func,
 }

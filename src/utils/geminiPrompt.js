@@ -1,8 +1,10 @@
 import { getStepsForPrompt } from '../data/electionSteps'
 
 /**
- * Builds the Gemini system prompt with injected election knowledge base.
- * @returns {string} Complete system prompt string
+ * Builds the complete Gemini system prompt with injected ECI 
+ * election knowledge base as ground truth.
+ * Prevents hallucination by grounding AI responses in static data.
+ * @returns {string} Complete system prompt — injected before every API call
  */
 export function buildSystemPrompt() {
   const steps = getStepsForPrompt()
@@ -42,9 +44,13 @@ CRITICAL: Respond ONLY with valid JSON. No text before or after. No \`\`\`json f
 }
 
 /**
- * Sanitizes raw user input before sending to Gemini API.
- * @param {string} input - Raw user input
- * @returns {string} Sanitized input, max 500 chars
+ * Sanitizes raw user input before transmission to Gemini API.
+ * Prevents XSS, prompt injection, and role hijacking attempts.
+ * @param {string} input - Raw text from user input field
+ * @returns {string} Sanitized string, maximum 500 characters
+ * @example
+ * sanitizeInput('  How do I vote?  ') // → 'How do I vote?'
+ * sanitizeInput('<script>xss</script>') // → 'scriptsscript'
  */
 export function sanitizeInput(input) {
   if (typeof input !== 'string') return ''
@@ -58,9 +64,16 @@ export function sanitizeInput(input) {
 }
 
 /**
- * Parses Gemini API response text into structured data object.
- * @param {string} rawText - Raw text from Gemini stream
- * @returns {{ answer: string, activeStep: string|null, suggestedQuestions: string[], confidence: string, disclaimer: string|null }}
+ * Parses the raw Gemini API response into a structured data object.
+ * Handles JSON parse failures gracefully — falls back to raw text display.
+ * @param {string} rawText - Complete text response from Gemini stream
+ * @returns {{
+ *   answer: string,
+ *   activeStep: string|null,
+ *   suggestedQuestions: string[],
+ *   confidence: 'high'|'medium'|'low',
+ *   disclaimer: string|null
+ * }} Parsed response object
  */
 export function parseGeminiResponse(rawText) {
   const fallback = {
