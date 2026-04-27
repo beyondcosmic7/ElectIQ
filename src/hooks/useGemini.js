@@ -19,7 +19,7 @@ function getModel() {
   }
   if (!model) {
     model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-3-flash-preview',
       generationConfig: {
         temperature: 0.3,
         topP: 0.8,
