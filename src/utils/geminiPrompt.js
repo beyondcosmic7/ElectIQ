@@ -1,9 +1,8 @@
 import { getStepsForPrompt } from '../data/electionSteps'
 
 /**
- * Builds the system prompt injected into every Gemini API call.
- * Election steps are embedded as ground truth — AI must reference these,
- * not rely on training data. This is how we cut the 27% hallucination rate.
+ * Builds the Gemini system prompt with injected election knowledge base.
+ * @returns {string} Complete system prompt string
  */
 export function buildSystemPrompt() {
   const steps = getStepsForPrompt()
@@ -43,7 +42,9 @@ CRITICAL: Respond ONLY with valid JSON. No text before or after. No \`\`\`json f
 }
 
 /**
- * Sanitizes and validates user input before sending to API
+ * Sanitizes raw user input before sending to Gemini API.
+ * @param {string} input - Raw user input
+ * @returns {string} Sanitized input, max 500 chars
  */
 export function sanitizeInput(input) {
   if (typeof input !== 'string') return ''
@@ -57,8 +58,9 @@ export function sanitizeInput(input) {
 }
 
 /**
- * Parses the Gemini response text into a structured object.
- * Falls back to raw text display if parsing fails.
+ * Parses Gemini API response text into structured data object.
+ * @param {string} rawText - Raw text from Gemini stream
+ * @returns {{ answer: string, activeStep: string|null, suggestedQuestions: string[], confidence: string, disclaimer: string|null }}
  */
 export function parseGeminiResponse(rawText) {
   const fallback = {
@@ -110,6 +112,8 @@ export function parseGeminiResponse(rawText) {
 /**
  * Heuristically extracts the content of the "answer" field from a partially 
  * complete JSON string during streaming.
+ * @param {string} buffer - The raw JSON string chunk being processed
+ * @returns {string} The extracted answer content so far
  */
 export function extractAnswerFromStream(buffer) {
   if (!buffer) return ''

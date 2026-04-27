@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export default function MessageBubble({ message, isStreaming = false, streamingContent = '' }) {
   const isUser = message?.role === 'user'
   const isAI = message?.role === 'ai'
@@ -90,4 +92,18 @@ export default function MessageBubble({ message, isStreaming = false, streamingC
   }
 
   return null
+}
+
+MessageBubble.propTypes = {
+  message: PropTypes.shape({
+    role: PropTypes.oneOf(['user', 'ai']).isRequired,
+    content: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    timestamp: PropTypes.instanceOf(Date),
+    suggestedQuestions: PropTypes.arrayOf(PropTypes.string),
+    confidence: PropTypes.oneOf(['high', 'medium', 'low']),
+    disclaimer: PropTypes.string,
+  }),
+  isStreaming: PropTypes.bool,
+  streamingContent: PropTypes.string,
 }

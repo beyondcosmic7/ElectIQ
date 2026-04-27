@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { useAppContext } from '../context/AppContext'
 import { buildSystemPrompt, sanitizeInput, parseGeminiResponse, extractAnswerFromStream } from '../utils/geminiPrompt'
+import { trackQuestionAsked } from '../services/firebase'
 
 // Initialize the client once (not on every call)
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
@@ -41,6 +42,8 @@ export function useGemini() {
   const sendMessage = useCallback(async (userInput) => {
     const sanitized = sanitizeInput(userInput)
     if (!sanitized) return
+
+    trackQuestionAsked(sanitized)
 
     // Check cache for identical recent question
     const cacheKey = `electiq_cache_${sanitized.toLowerCase().replace(/\s+/g, '_').slice(0, 50)}`

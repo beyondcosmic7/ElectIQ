@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { ELECTION_STEPS } from '../../data/electionSteps'
 import TimelineStep from './TimelineStep'
 import { useAppContext } from '../../context/AppContext'
+import { trackStepViewed } from '../../services/firebase'
 
 export default function ElectionTimeline({ onClose }) {
   const { state } = useAppContext()
@@ -14,6 +15,7 @@ export default function ElectionTimeline({ onClose }) {
       setTimeout(() => {
         activeRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
       }, 100)
+      trackStepViewed(state.activeStep)
     }
   }, [state.activeStep])
 

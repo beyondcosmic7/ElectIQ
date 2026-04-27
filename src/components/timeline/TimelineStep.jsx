@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useAppContext } from '../../context/AppContext'
 import StepDetailCard from './StepDetailCard'
 
@@ -144,4 +145,17 @@ export default function TimelineStep({ step, isLast }) {
       )}
     </li>
   )
+}
+
+TimelineStep.propTypes = {
+  step: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    phase: PropTypes.number.isRequired,
+    icon: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    checklistKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  isLast: PropTypes.bool.isRequired,
 }

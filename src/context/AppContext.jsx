@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react'
+import { trackChecklistItem } from '../services/firebase'
 
 const initialState = {
   activeStep: null,
@@ -66,11 +67,14 @@ function reducer(state, action) {
     case 'CLEAR_ERROR':
       return { ...state, error: null }
 
-    case 'TOGGLE_CHECKLIST_ITEM':
+    case 'TOGGLE_CHECKLIST_ITEM': {
+      const isChecked = !state.checklist[action.payload]
+      trackChecklistItem(action.payload, isChecked)
       return {
         ...state,
-        checklist: { ...state.checklist, [action.payload]: !state.checklist[action.payload] }
+        checklist: { ...state.checklist, [action.payload]: isChecked }
       }
+    }
 
     case 'TOGGLE_MOBILE_MENU':
       return { ...state, isMobileMenuOpen: !state.isMobileMenuOpen }

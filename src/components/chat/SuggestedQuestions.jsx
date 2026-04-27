@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export default function SuggestedQuestions({ questions, onSelect }) {
   if (!questions || questions.length === 0) return null
 
@@ -14,4 +16,9 @@ export default function SuggestedQuestions({ questions, onSelect }) {
       ))}
     </div>
   )
+}
+
+SuggestedQuestions.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.string),
+  onSelect: PropTypes.func.isRequired,
 }
